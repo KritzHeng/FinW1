@@ -46,34 +46,32 @@ const asWeek1_2: NextPage<Props> = ({ data }: any) => {
   const handleSubmit = async () => {
     
     try {
-      // setInputData(form.usdtInput);
-      // console.log(inputData)
-      // let m: number;
       let cost: number = form.usdtInput; 
-      let btc: number = 0; 
-      console.log(dataBids[0][0])
-      console.log(dataBids[0][1])
-      for (let index = 0; index < dataBids.length; index++) {
-        const element = dataBids[index];
-        // const element = 29367.99000000;
-        
-        if(cost >= Number(element[0])){
-          cost =  cost - Number(element[0]);
-          btc =  btc + Number(element[1]);
-
-          console.log("cost: " + cost);
-          console.log("btc: " + btc);
-          // setForm();
-          // console.log(form.usdtInput);
-          // cost = cost - element[0];
-        }
-// ????? กรณีน้อยกว่า
-        // else if()
-        
+      let btcTotal: number = 0; 
+      for (let index = 0; index < 5; index++) {
+        console.log("price: ", dataBids[index][0], "btc: ", dataBids[index][1])
       }
+      console.log("cost usdt total of btc: ",dataBids[0][0] * dataBids[0][1]," USDT")
+      let index = 0;
+      while (cost > 0){
 
-      // const res = 1;
-      // console.log(form.usdtInput);
+          const element = dataBids[index];
+        // for (let index = 0; index < dataBids.length; index++) {
+          const usdtTotal = Number(element[0]) * Number(element[1])
+          if(cost >= usdtTotal){
+            cost =  cost - usdtTotal;
+            btcTotal += Number(element[1]);
+            console.log("if cost: ", cost, "btc: ",btcTotal)
+          }
+          // ????? กรณีน้อยกว่า
+          else if(cost < usdtTotal){
+            btcTotal += (cost * (Number(element[1])/usdtTotal));
+            cost = 0;
+            console.log("final btc: " + btcTotal);
+          }
+          
+          index = index + 1;
+        }
     } catch (error) {}
   };
 

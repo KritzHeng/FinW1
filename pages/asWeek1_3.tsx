@@ -48,14 +48,14 @@ const asWeek1_2: NextPage<Props> = ({ data }: any) => {
     try {
       let cost: number = form.usdtInput; 
       let btcTotal: number = 0; 
-      for (let index = 0; index < 5; index++) {
-        console.log("price: ", dataBids[index][0], "btc: ", dataBids[index][1])
-      }
-      console.log("cost usdt total of btc: ",dataBids[0][0] * dataBids[0][1]," USDT")
+      // for (let index = 0; index < 5; index++) {
+      //   console.log("price: ", dataBids[index][0], "btc: ", dataBids[index][1])
+      // }
+      // console.log("cost usdt total of btc: ",dataBids[0][0] * dataBids[0][1]," USDT")
       let index = 0;
       while (cost > 0){
 
-          const element = dataBids[index];
+          const element = dataAsks[index];
         // for (let index = 0; index < dataBids.length; index++) {
           const usdtTotal = Number(element[0]) * Number(element[1])
           if(cost >= usdtTotal){
@@ -69,13 +69,13 @@ const asWeek1_2: NextPage<Props> = ({ data }: any) => {
             cost = 0;
             console.log("final btc: " + btcTotal);
           }
-          
           index = index + 1;
         }
     } catch (error) {}
   };
 
-
+// store
+// state จบแค่หน้า
   return (
     <div>
       <div>
